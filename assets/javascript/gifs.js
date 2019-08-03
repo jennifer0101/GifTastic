@@ -3,13 +3,14 @@ $( document ).ready()
 var topics = ["Little House on the Prairie", "I Love Lucy", "Gilligans Island", "The Flintstones", "The Brady Bunch", "The Facts of Life", "Family Ties", "Punky Brewster", "Leave it to Beaver", "M*A*S*H", "Happy Days", "The Mary Tyler Moore Show", "Laverne and Shirley", "The Adams Family", "Moonlighting"];
 console.log(topics);
 
-
-
 function displayGifInfo() {
+  $("button").on("click", function() {
+
+  
     
     var gif = $(this).attr("data-name");
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=W4xqmEe0yTy39ECMo3Q4BXuLgdkYv4cH";
-
+  
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -19,12 +20,16 @@ function displayGifInfo() {
 
         $(".button-clicks").prepend(gifsDiv);
         renderGifs();
+    
+});
 });
 }
 console.log(displayGifInfo);
 
 
 
+
+//populates buttons on top of page, adds button from typing
 function renderGifs() {
     $(".button-clicks").empty();
     for (var i = 0; i < topics.length; i++) {
@@ -38,7 +43,7 @@ function renderGifs() {
     console.log(renderGifs);
     
 
-
+    //adds new buttons when typing into gif-input field 
     $("#add-gif").on("click", function(event) {
       event.preventDefault();
       var gif = $("#gif-input").val().trim();
@@ -46,9 +51,8 @@ function renderGifs() {
       renderGifs();
     });
 
-
-
     $(document).on("click", ".gif", displayGifInfo);
-    console.log(displayGifInfo);
+  
 
-    renderGifs();
+
+    renderGifs()

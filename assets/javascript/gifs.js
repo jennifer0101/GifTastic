@@ -5,32 +5,62 @@ console.log(topics);
 
 function displayGifInfo() {
   $("button").on("click", function() {
-
-  
-    
-    var gif = $(this).attr("data-name");
+    var gif = $(this).attr("data-gif");
+    console.log($(this));
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=W4xqmEe0yTy39ECMo3Q4BXuLgdkYv4cH";
-  
     $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function(response) {
+      url: queryURL,
+      method: "GET"
+    })
+    .then(function(response) {
+      console.log(queryURL);
       console.log(response);
-        var gifsDiv = $("<div class = 'gif'>");
-
-        $(".button-clicks").prepend(gifsDiv);
+      var results = response.data;
+      for (var i = 0; i < results.length; i++) {
+        if(results[i].rating !== "r" && results[i].rating !== "pg-13") {
+          var gifDiv = $("<div>");
+          var rating = results[i].rating;
+          var p = $("<p>").text("Rating: " + rating);
+          var gifImage = $("<img>");
+          gifImage.attr("src", results[i].images.fixed_height.url);
+          gifDiv.append(p);
+          gifDiv.append(gifImage);
+          $("#gifs-view").prepend(gifDiv);
         renderGifs();
-    
-});
+      }
+    }
+  });
 });
 }
-console.log(displayGifInfo);
+// function displayGifInfo() {
+//   $("button").on("click", function() {
+
+  
+    
+//     var gif = $(this).attr("data-name");
+//     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=W4xqmEe0yTy39ECMo3Q4BXuLgdkYv4cH";
+  
+//     $.ajax({
+//         url: queryURL,
+//         method: "GET"
+//     }).then(function(response) {
+//       console.log(response);
+//         var gifsDiv = $("<div class = 'gifs-view'>");
+
+//         $(".button-clicks").prepend(gifsDiv);
+//         renderGifs();
+    
+// });
+// });
+// }
+// console.log(displayGifInfo);
 
 
 
 
 //populates buttons on top of page, adds button from typing
 function renderGifs() {
+  
     $(".button-clicks").empty();
     for (var i = 0; i < topics.length; i++) {
         var a = $("<button>");

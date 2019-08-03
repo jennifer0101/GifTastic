@@ -1,9 +1,20 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Comfortaa', cursive;
     font-size: 16px;
+    font-weight: 700;
 }
 
-.buttons {
+#gif-form {
+    float: right;
+    padding: 50px 100px;
+}
+
+#gifs {
+    padding: 25px;
+}
+
+/* Submit Button */
+#add-gif {
     background-color: #29bdbb;
     color: white;
     padding: 8px;
@@ -13,10 +24,28 @@ body {
     border-radius: 8px;
 }
 
-.buttons:hover {
-    background-color: #208f8e 
-  }
+#add-gif:hover {
+    background-color: #208f8e; 
+  } 
 
-#form {
-    float: right;
+.gif {
+    background-color: #29bdbb;
+    color: white;
+    padding: 8px;
+    margin: 3px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
 }
+
+.gif:hover {
+    background-color: #208f8e; 
+}
+
+#gif-input {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+/*  #buttons,  .buttons, Input[type=text]?*

@@ -1,11 +1,12 @@
 $( document ).ready()
 
-var topics = ["Little House on the Prairie", "I Love Lucy", "Gilligans Island", "The Flintstones", "The Brady Bunch", "The Facts of Life", "Family Ties", "Punky Brewster", "Leave it to Beaver", "M*A*S*H", "Happy Days", "The Mary Tyler Moore Show", "Laverne and Shirley", "The Adams Family", "Moonlighting"];
+var topics = ["Little House on the Prairie", "The Dukes of Hazzard", "Gilligans Island", "The Flintstones", "The Brady Bunch", "The Facts of Life", "Family Ties", "Punky Brewster", "Growing Pains", "M*A*S*H", "Happy Days", "The Mary Tyler Moore Show", "Laverne and Shirley", "The Adams Family", "Moonlighting"];
 console.log(topics);
 
+//pulls gif from giphy, displays gif on the html page
 function displayGifInfo() {
   $("button").on("click", function() {
-    var gif = $(this).attr("data-gif");
+    var gif = $(this).attr("data-button.gif");
     console.log($(this));
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=W4xqmEe0yTy39ECMo3Q4BXuLgdkYv4cH";
     $.ajax({
@@ -32,31 +33,6 @@ function displayGifInfo() {
   });
 });
 }
-// function displayGifInfo() {
-//   $("button").on("click", function() {
-
-  
-    
-//     var gif = $(this).attr("data-name");
-//     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=W4xqmEe0yTy39ECMo3Q4BXuLgdkYv4cH";
-  
-//     $.ajax({
-//         url: queryURL,
-//         method: "GET"
-//     }).then(function(response) {
-//       console.log(response);
-//         var gifsDiv = $("<div class = 'gifs-view'>");
-
-//         $(".button-clicks").prepend(gifsDiv);
-//         renderGifs();
-    
-// });
-// });
-// }
-// console.log(displayGifInfo);
-
-
-
 
 //populates buttons on top of page, adds button from typing
 function renderGifs() {
@@ -73,16 +49,16 @@ function renderGifs() {
     console.log(renderGifs);
     
 
-    //adds new buttons when typing into gif-input field 
-    $("#add-gif").on("click", function(event) {
-      event.preventDefault();
-      var gif = $("#gif-input").val().trim();
-      topics.push(gif);
-      renderGifs();
-    });
+  //adds new buttons when typing into gif-input field 
+  $("#add-gif").on("click", function(event) {
+    event.preventDefault();
+    var gif = $("#gif-input").val().trim();
+    topics.push(gif);
+    renderGifs();
+  });
 
     $(document).on("click", ".gif", displayGifInfo);
   
 
 
-    renderGifs()
+  renderGifs()

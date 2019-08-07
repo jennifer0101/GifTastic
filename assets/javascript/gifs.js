@@ -5,9 +5,9 @@ console.log(topics);
 
 //pulls gif from giphy, displays gif on the html page
 function displayGifInfo() {
-  $("button").on("click", function() {
-    var gif = $(this).attr("data-button.gif");
-    console.log($(this));
+  //$("button").on("click", function() {
+    var gif = $(this).attr("data-name");
+    console.log(gif);
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=W4xqmEe0yTy39ECMo3Q4BXuLgdkYv4cH";
     $.ajax({
       url: queryURL,
@@ -17,7 +17,7 @@ function displayGifInfo() {
       console.log(queryURL);
       console.log(response);
       var results = response.data;
-      for (var i = 0; i < results.length; i++) {
+      for (var i = 0; i < 11; i++) {
         if(results[i].rating !== "r" && results[i].rating !== "pg-13") {
           var gifDiv = $("<div>");
           var rating = results[i].rating;
@@ -31,7 +31,7 @@ function displayGifInfo() {
       }
     }
   });
-});
+
 }
 
 //populates buttons on top of page, adds button from typing
@@ -57,7 +57,7 @@ function renderGifs() {
     renderGifs();
   });
 
-    $(document).on("click", ".gif", displayGifInfo);
+$(document).on("click", ".gif", displayGifInfo);
   
 
 

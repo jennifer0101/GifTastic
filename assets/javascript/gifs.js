@@ -8,7 +8,7 @@ function displayGifInfo() {
   //$("button").on("click", function() {
     var gif = $(this).attr("data-name");
     console.log(gif);
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=W4xqmEe0yTy39ECMo3Q4BXuLgdkYv4cH";
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=W4xqmEe0yTy39ECMo3Q4BXuLgdkYv4cH&limit=10&rating=pg-13";
     $.ajax({
       url: queryURL,
       method: "GET"
@@ -17,8 +17,9 @@ function displayGifInfo() {
       console.log(queryURL);
       console.log(response);
       var results = response.data;
-      for (var i = 0; i < 11; i++) {
-        if(results[i].rating !== "r" && results[i].rating !== "pg-13") {
+      console.log(results);
+      for (var i = 0; i < results.length; i++) {
+        //if(results[i].rating !== "r" && results[i].rating !== "pg-13") {
           var gifDiv = $("<div>");
           var rating = results[i].rating;
           var p = $("<p>").text("Rating: " + rating);
@@ -28,10 +29,9 @@ function displayGifInfo() {
           gifDiv.append(gifImage);
           $("#gifs-view").prepend(gifDiv);
         renderGifs();
-      }
+      
     }
   });
-
 }
 
 //populates buttons on top of page, adds button from typing

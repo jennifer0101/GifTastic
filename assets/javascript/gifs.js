@@ -5,7 +5,7 @@ console.log(topics);
 
 //pulls gif from giphy, displays gif on the html page
 function displayGifInfo() {
-  //$("button").on("click", function() {
+ 
     var gif = $(this).attr("data-name");
     console.log(gif);
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=W4xqmEe0yTy39ECMo3Q4BXuLgdkYv4cH&limit=10&rating=pg-13";
@@ -19,8 +19,8 @@ function displayGifInfo() {
       var results = response.data;
       console.log(results);
       for (var i = 0; i < results.length; i++) {
-        //if(results[i].rating !== "r" && results[i].rating !== "pg-13") {
-          var gifDiv = $("<div>");
+        
+          var gifDiv = $("<div id=gifDiv>");
           var rating = results[i].rating;
           var p = $("<p>").text("Rating: " + rating);
           var gifImage = $("<img>");
@@ -56,6 +56,20 @@ function renderGifs() {
     topics.push(gif);
     renderGifs();
   });
+
+
+  //Trying to stop and start gifs
+  
+  // $("#gifs-view").on("click", function() {
+  //   var state= $(this).attr("data-state");
+  //   if (state === "still") {
+  //     $(this).attr("src", $(this).attr("data-animate"));
+  //     $(this).attr("data-state", "animate");
+  //   } else {
+  //     $(this).attr("src", $(this).attr("data-still"));
+  //     $(this).attr("data-state", "still");
+  //   }
+  // })
 
 $(document).on("click", ".gif", displayGifInfo);
   

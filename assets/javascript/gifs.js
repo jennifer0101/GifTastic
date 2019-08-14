@@ -7,7 +7,7 @@ console.log(topics);
 function displayGifInfo() {
   var gif = $(this).attr("data-name");
   console.log(gif);
-  var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=W4xqmEe0yTy39ECMo3Q4BXuLgdkYv4cH&limit=10&rating=pg-13";
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=W4xqmEe0yTy39ECMo3Q4BXuLgdkYv4cH&limit=10&rating=pg-13";
   $.ajax({
     url: queryURL,
     method: "GET"
